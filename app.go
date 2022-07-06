@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"runtime"
 	"strings"
 
@@ -82,7 +83,8 @@ func main() {
 	color.Set(color.FgYellow)
 	println(" 1 -> Update Status : Check update status from itch.io")
 	println(" 2 -> Check Version : Display installed version of Holocure")
-	println(" 3 -> Exit : Close the app\n")
+	println(" 3 -> Download : Open itch.io site directly in your browser")
+	println(" 4 -> Exit : Close the app\n")
 	color.Unset()
 
 	for {
@@ -111,6 +113,13 @@ func main() {
 			fmt.Print("\n")
 
 		case choice == "3":
+			color.Set(color.FgMagenta)
+			println("Opening link from your default browser")
+			color.Unset()
+			exec.Command("rundll32", "url.dll,FileProtocolHandler", "https://kay-yu.itch.io/holocure").Start()
+			fmt.Print("\n")
+
+		case choice == "4":
 			break
 
 		case choice == "":
@@ -127,7 +136,7 @@ func main() {
 
 		}
 
-		if choice == "3" {
+		if choice == "4" {
 			break
 		}
 
